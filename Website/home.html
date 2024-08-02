@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Panels with Spacer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff; /* Default text color to white for contrast */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .image-panel {
+            position: relative; /* Position relative to allow absolute positioning of the overlay */
+            height: 100vh; /* Full viewport height */
+            background-image: url('images/coverimage.jpg'); /* Local image path */
+            background-size: cover; /* Ensures the image covers the entire section */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents image repetition */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-panel::before {
+            content: ''; /* Empty content for the pseudo-element */
+            position: absolute; /* Absolutely positioned to cover the panel */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            z-index: 1; /* Ensure the overlay sits above the image but below the text */
+        }
+        .overlay {
+            position: relative; /* Relative positioning to sit on top of the overlay */
+            z-index: 2; /* Ensure the text is above the overlay */
+            background: rgba(0, 0, 0, 0.5); /* Optional: Background color for better text readability */
+            padding: 20px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .spacer {
+            height: 50px; /* Adjust the height of the spacer as needed */
+            background-color: red; /* Red background for the spacer */
+        }
+        .robots-container {
+            display: flex;
+            justify-content: center; /* Centers the panels horizontally within the container */
+            align-items: center; /* Centers the panels vertically within the container */
+            flex-wrap: nowrap; /* Prevents wrapping of the panels */
+            gap: 20px; /* Space between the panels */
+            padding: 20px; /* Padding around the container */
+        }
+        .robots-panel {
+            width: 400px; /* Updated width */
+            height: 625px; /* Updated height */
+            background-size: cover; /* Ensures the image covers the section */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents image repetition */
+            position: relative; /* Allows absolute positioning of the overlay */
+            filter: grayscale(100%); /* Default to black and white */
+            transition: filter 1s ease; /* Smooth transition for the filter effect */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .robots-panel:hover {
+            filter: grayscale(0%); /* Return to color on hover */
+        }
+        .robots-overlay {
+            width: 100%; /* Full width of the robots-panel */
+            background: rgba(0, 0, 0, 0.7); /* Dark transparent bar */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0; /* Vertical padding */
+            position: absolute; /* Positioned relative to .robots-panel */
+            top: 50%; /* Center the overlay vertically */
+            left: 50%; /* Center the overlay horizontally */
+            transform: translate(-50%, -50%); /* Offset by half the width and height to truly center it */
+            z-index: 2; /* Ensure it is above the image */
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+        .sponsored-section {
+            background-color: #d3d3d3; /* Darker gray background */
+            padding: 20px; /* Padding for spacing */
+            text-align: center; /* Center align text */
+            font-size: 0.875rem; /* Small font size */
+            color: #333; /* Dark gray text color for readability */
+        }
+        .sponsored-bar {
+            background-color: #d3d3d3; /* Same gray background color */
+            padding: 10px; /* Padding for spacing */
+            text-align: center; /* Center align text */
+            font-size: 1rem; /* Slightly larger font size for the bar */
+            color: #333; /* Dark gray text color for readability */
+        }
+        .sponsored-content {
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            gap: 20px; /* Space between images */
+        }
+        .sponsored-section img {
+            object-fit: cover; /* Ensures the image fits the frame */
+            margin-top: 10px; /* Space between the text and the image */
+        }
+        .sponsored-content img.google {
+            width: 350px; /* Fixed width for the Google image */
+            height: 125px; /* Fixed height for the Google image */
+        }
+        .sponsored-content img.asp {
+            width: 350px; /* Fixed width for the ASP image */
+            height: 350px; /* Fixed height for the ASP image */
+        }
+        .sponsored-content img.curtin {
+            width: 350px; /* Fixed width for the Curtin image */
+            height: 350px; /* Fixed height for the Curtin image */
+        }
+        
+        /* Specific styling for each robots panel */
+        .robots-panel.about {
+            background-image: url('images/aboutimage.jpg'); /* Local image path for About section */
+        }
+        .robots-panel.robots {
+            background-image: url('images/robotsimage.jpg'); /* Local image path for Robots section */
+        }
+        .robots-panel.sponsors {
+            background-image: url('images/sponsorsimage.jpg'); /* Local image path for Sponsors section */
+        }
+
+        /* Style for the clickable robots panel */
+        .robots-link {
+            display: block;
+            width: 400px; /* Width of the robots image */
+            height: 625px; /* Height of the robots image */
+            background-size: cover; /* Ensures the image covers the entire section */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents image repetition */
+            text-decoration: none; /* Remove underline from links */
+        }
+        .robots-link:hover {
+            filter: grayscale(0%); /* Return to color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-panel">
+            <div class="overlay">
+                6509 Western Blue Tongues
+            </div>
+        </div>
+        <div class="spacer"></div> <!-- Red spacer added here -->
+        
+        <div class="robots-container">
+            <!-- Three robots panels centered on the page -->
+            <div class="robots-panel about">
+                <div class="robots-overlay">
+                    About
+                </div>
+            </div>
+            <a href="robots.html" class="robots-link">
+                <div class="robots-panel robots">
+                    <div class="robots-overlay">
+                        Robots
+                    </div>
+                </div>
+            </a>
+            <div class="robots-panel sponsors">
+                <div class="robots-overlay">
+                    Sponsors
+                </div>
+            </div>
+        </div>
+
+        <div class="sponsored-bar">
+            Proudly Sponsored By:
+        </div>
+        
+        <div class="sponsored-section">
+            <div class="sponsored-content">
+                <img src="images/googleimage.png" alt="Sponsored by Google" class="google">
+                <img src="images/aspimage.png" alt="Sponsored by ASP" class="asp">
+                <img src="images/curtinimage.png" alt="Sponsored by Curtin" class="curtin">
+            </div>
+        </div>
+        
+        <div class="content">
+            <!-- Additional content goes here to allow scrolling -->
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel lorem a tortor cursus ultricies.</p>
+            <p>Vestibulum auctor, libero ac tincidunt fermentum, odio ligula suscipit felis, nec vehicula purus nunc eget mi. Nullam ut dui nisl. Morbi posuere ultricies venenatis.</p>
+            <p>Phasellus id metus vel magna sollicitudin dictum et at lectus. Donec lacinia augue vitae neque convallis tempus.</p>
+            <!-- Add more content here to demonstrate scrolling -->
+        </div>
+    </div>
+</body>
+</html>
