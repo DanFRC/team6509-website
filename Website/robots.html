@@ -3,71 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robots Page</title>
+    <title>Events Cover</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: #fff; /* Default text color to white for contrast */
-        }
-        .cover-page {
-            position: relative; /* Position relative to allow absolute positioning of the overlay */
-            height: 100vh; /* Full viewport height */
-            background-image: url('images/coverimage.jpg'); /* Local image path */
-            background-size: cover; /* Ensures the image covers the entire section */
-            background-position: center; /* Centers the image */
-            background-repeat: no-repeat; /* Prevents image repetition */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column; /* Center content vertically and horizontally */
-            text-align: center; /* Center align text */
-        }
-        .cover-page::before {
-            content: ''; /* Empty content for the pseudo-element */
-            position: absolute; /* Absolutely positioned to cover the panel */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
-            z-index: 1; /* Ensure the overlay sits above the image but below the text */
-        }
-        .cover-text {
-            position: relative; /* Relative positioning to sit on top of the overlay */
-            z-index: 2; /* Ensure the text is above the overlay */
-            background: rgba(0, 0, 0, 0.5); /* Optional: Background color for better text readability */
-            padding: 20px;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 2rem; /* Larger font size for the cover text */
-        }
-        .return-button {
-            position: relative;
-            margin-top: 20px; /* Space between cover text and button */
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #007bff; /* Blue background for the button */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .return-button:hover {
-            background-color: #0056b3; /* Darker blue for hover effect */
-        }
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff; /* Default text color to white for contrast */
+}
+.top-bar {
+    position: fixed; /* Fix to the top of the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ff0000; /* Dark background for the top bar */
+    color: #fff;
+    padding: 20px 20px; /* Padding around the bar */
+    z-index: 10; /* Ensure it's above all other content */
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center items vertically */
+}
+.top-bar .left-side {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo and text */
+}
+.top-bar .left-side img {
+    height: 40px; /* Adjust size as needed */
+}
+.top-bar .navigation {
+    display: flex;
+    gap: 20px; /* Space between navigation items */
+    margin-left: 20px; /* Adjust margin to shift links to the left */
+}
+.top-bar .navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0 15px; /* Padding for spacing */
+}
+.top-bar .navigation a:hover {
+    text-decoration: underline; /* Underline on hover for better visibility */
+}
+.cover-container {
+    position: relative; /* Position relative to center the text */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide overflow to ensure the image doesn't spill out */
+    margin-top: 70px; /* Adjust top margin to account for the top bar */
+}
+.cover-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire container */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensure the image is behind the overlay */
+}
+.cover-container::before {
+    content: ''; /* Empty content for the pseudo-element */
+    position: absolute; /* Positioned relative to the cover-container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Semi-transparent dark overlay */
+    z-index: 2; /* Ensure the overlay sits above the image but below the text */
+}
+.cover-text {
+    position: relative; /* Relative positioning to ensure text is above the overlay */
+    color: #fff; /* White text color for contrast */
+    font-size: 3rem; /* Large text size */
+    font-weight: bold;
+    z-index: 3; /* Ensure the text is above the overlay */
+    padding: 20px; /* Padding for spacing */
+    text-align: center; /* Center the text */
+}
+.spacer {
+    height: 50px; /* Height of the spacer */
+    background-color: red; /* Red background for the spacer */
+    position: sticky; /* Sticky positioning to keep it visible when scrolling */
+    top: 0; /* Stick to the top of the viewport */
+    z-index: 2; /* Ensure it is above other content */
+}
+.robots-container {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center sections horizontally */
+    gap: 20px; /* Space between the sections */
+    padding: 20px; /* Padding around the container */
+}
+.robots-panel {
+    width: 80%; /* Adjust width to fit the container */
+    max-width: 800px; /* Maximum width of the panel */
+    height: 400px; /* Adjust height as needed */
+    background-size: cover; /* Ensures the image covers the section */
+    background-position: center bottom; /* Position the image with more focus on the bottom */
+    background-repeat: no-repeat; /* Prevents image repetition */
+    position: relative; /* Allows absolute positioning of the overlay */
+    filter: grayscale(100%); /* Default to black and white */
+    transition: filter 1s ease; /* Smooth transition for the filter effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.robots-panel:hover {
+    filter: grayscale(0%); /* Return to color on hover */
+}
+.robots-overlay {
+    width: 100%; /* Full width of the robots-panel */
+    background: rgba(0, 0, 0, 0.7); /* Dark transparent bar */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0; /* Vertical padding */
+    position: absolute; /* Positioned relative to .robots-panel */
+    top: 50%; /* Center the overlay vertically */
+    left: 50%; /* Center the overlay horizontally */
+    transform: translate(-50%, -50%); /* Offset by half the width and height to truly center it */
+    z-index: 2; /* Ensure it is above the image */
+}
+
     </style>
 </head>
 <body>
-    <div class="cover-page">
-        <div class="cover-text">
-            6509 Western Blue Tongues
+    <div class="top-bar">
+        <div class="left-side">
+            <img src="images/websitelogoimage.png" alt="Logo">
+            <span>6509</span>
         </div>
-        <a href="home.html" class="return-button">Return to Home</a>
+        <div class="navigation">
+            <a href="home.html">Home</a>
+            <a href="robots.html">Robots</a>
+            <a href="events.html">Events</a>
+            <a href="about.html">About</a>
+            <a href="sponsors.html">Sponsors</a>
+        </div>
+    </div>
+
+    <div class="cover-container">
+        <img src="images/robotscoverpage.jpg" alt="Cover Image">
+        <div class="cover-text">
+            Robots
+        </div>
+    </div>
+    
+    <div class="spacer"></div> <!-- Red spacer below the cover section -->
+
+    <div class="robots-container">
+        <!-- Panel with image for Garry -->
+        <div class="robots-panel" style="background-image: url('images/robotsimage.jpg'); background-position: center bottom 35%;">
+            <div class="robots-overlay">
+                Garry
+            </div>
+        </div>
+        <!-- Panel with image for Bob -->
+        <div class="robots-panel" style="background-image: url('images/bobimage.jpg');">
+            <div class="robots-overlay">
+                Bob
+            </div>
+        </div>
     </div>
 </body>
 </html>

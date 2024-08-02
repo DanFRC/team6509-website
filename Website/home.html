@@ -12,17 +12,53 @@
             font-family: 'Montserrat', sans-serif;
             color: #fff; /* Default text color to white for contrast */
         }
+        .top-bar {
+            position: fixed; /* Fix to the top of the viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ff0000; /* Dark background for the top bar */
+            color: #fff;
+            padding: 20px 20px; /* Padding around the bar */
+            z-index: 10; /* Ensure it's above all other content */
+            display: flex;
+            justify-content: flex-start; /* Align items to the left */
+            align-items: center; /* Center items vertically */
+        }
+        .top-bar .left-side {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between the logo and text */
+        }
+        .top-bar .left-side img {
+            height: 40px; /* Adjust size as needed */
+        }
+        .top-bar .navigation {
+            display: flex;
+            gap: 20px; /* Space between navigation items */
+            margin-left: 20px; /* Adjust margin to shift links to the left */
+        }
+        .top-bar .navigation a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 15px; /* Padding for spacing */
+        }
+        .top-bar .navigation a:hover {
+            text-decoration: underline; /* Underline on hover for better visibility */
+        }
         .container {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            margin-top: 70px; /* Adjust top margin to account for the top bar */
         }
         .image-panel {
             position: relative; /* Position relative to allow absolute positioning of the overlay */
             height: 100vh; /* Full viewport height */
             background-image: url('images/coverimage.jpg'); /* Local image path */
             background-size: cover; /* Ensures the image covers the entire section */
-            background-position: center; /* Centers the image */
+            background-position: center top; /* Centers the image */
             background-repeat: no-repeat; /* Prevents image repetition */
             display: flex;
             justify-content: center;
@@ -41,11 +77,10 @@
         .overlay {
             position: relative; /* Relative positioning to sit on top of the overlay */
             z-index: 2; /* Ensure the text is above the overlay */
-            background: rgba(0, 0, 0, 0.5); /* Optional: Background color for better text readability */
-            padding: 20px;
-            border-radius: 8px;
+            background: transparent; /* Remove the background */
+            padding: 0; /* Remove padding */
             color: #fff;
-            font-size: 1.5rem;
+            font-size: 2.5rem; /* Adjust to match title font size in robots.html */
             text-align: center;
         }
         .spacer {
@@ -53,6 +88,7 @@
             background-color: red; /* Red background for the spacer */
         }
         .robots-container {
+            background-color: #919191; /* Darker gray background */
             display: flex;
             justify-content: center; /* Centers the panels horizontally within the container */
             align-items: center; /* Centers the panels vertically within the container */
@@ -72,6 +108,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-decoration: none; /* Remove underline from links */
         }
         .robots-panel:hover {
             filter: grayscale(0%); /* Return to color on hover */
@@ -93,14 +130,14 @@
             text-align: center;
         }
         .sponsored-section {
-            background-color: #d3d3d3; /* Darker gray background */
+            background-color: #e6e6e6; /* Darker gray background */
             padding: 20px; /* Padding for spacing */
             text-align: center; /* Center align text */
             font-size: 0.875rem; /* Small font size */
             color: #333; /* Dark gray text color for readability */
         }
         .sponsored-bar {
-            background-color: #d3d3d3; /* Same gray background color */
+            background-color: #e6e6e6; /* Same gray background color */
             padding: 10px; /* Padding for spacing */
             text-align: center; /* Center align text */
             font-size: 1rem; /* Slightly larger font size for the bar */
@@ -128,7 +165,7 @@
             width: 350px; /* Fixed width for the Curtin image */
             height: 350px; /* Fixed height for the Curtin image */
         }
-        
+
         /* Specific styling for each robots panel */
         .robots-panel.about {
             background-image: url('images/aboutimage.jpg'); /* Local image path for About section */
@@ -136,8 +173,8 @@
         .robots-panel.robots {
             background-image: url('images/robotsimage.jpg'); /* Local image path for Robots section */
         }
-        .robots-panel.sponsors {
-            background-image: url('images/sponsorsimage.jpg'); /* Local image path for Sponsors section */
+        .robots-panel.events {
+            background-image: url('images/eventsimage.jpg'); /* Local image path for Events section */
         }
 
         /* Style for the clickable robots panel */
@@ -149,28 +186,73 @@
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents image repetition */
             text-decoration: none; /* Remove underline from links */
+            position: relative; /* Ensure position relative for the overlay */
         }
-        .robots-link:hover {
+        .robots-link:hover .robots-overlay {
             filter: grayscale(0%); /* Return to color on hover */
+        }
+
+        /* New section styles */
+        .team-section {
+            padding: 20px; /* Padding around the section */
+            text-align: center; /* Center align text */
+            background-color: #6e6e6e; /* Light gray background for contrast */
+            
+        }
+        .team-heading {
+            font-size: 1.5rem; /* 1.5 times the base font size */
+            font-weight: bold; /* Bold text */
+            margin-bottom: 10px; /* Space below the heading */
+            color: #ffffff; /* Dark text color for readability */
+        }
+        .team-description {
+            font-size: 1rem; /* Base font size */
+            font-weight: normal; /* Normal weight for the description */
+            color: #ffffff; /* Dark text color for readability */
         }
     </style>
 </head>
 <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="left-side">
+            <img src="images/websitelogoimage.png" alt="Logo">
+            <span>6509</span>
+        </div>
+        <div class="navigation">
+            <a href="home.html">Home</a>
+            <a href="robots.html">Robots</a>
+            <a href="events.html">Events</a>
+            <a href="about.html">About</a>
+            <a href="sponsors.html">Sponsors</a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="image-panel">
             <div class="overlay">
                 6509 Western Blue Tongues
             </div>
         </div>
-        <div class="spacer"></div> <!-- Red spacer added here -->
+        <div class="spacer"></div>
+        
+        <!-- New Team Section -->
+        <div class="team-section">
+            <h2 class="team-heading">Our Team</h2>
+            <p class="team-description">
+                We are a FIRST Robotics Competition team based at Southern River College in Perth Western Australia. We work to promote STEM learning and career aspirations for youth in our community.
+            </p>
+        </div>
         
         <div class="robots-container">
-            <!-- Three robots panels centered on the page -->
-            <div class="robots-panel about">
-                <div class="robots-overlay">
-                    About
+            <!-- Updated About panel as a clickable link -->
+            <a href="about.html" class="robots-link">
+                <div class="robots-panel about">
+                    <div class="robots-overlay">
+                        About
+                    </div>
                 </div>
-            </div>
+            </a>
             <a href="robots.html" class="robots-link">
                 <div class="robots-panel robots">
                     <div class="robots-overlay">
@@ -178,11 +260,13 @@
                     </div>
                 </div>
             </a>
-            <div class="robots-panel sponsors">
-                <div class="robots-overlay">
-                    Sponsors
+            <a href="events.html" class="robots-link">
+                <div class="robots-panel events">
+                    <div class="robots-overlay">
+                        Events
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <div class="sponsored-bar">
