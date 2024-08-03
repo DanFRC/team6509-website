@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Panels with Spacer</title>
+    <title>6509 - Home</title>
+    <link rel="icon" href="images/websitefaviconimage.png" type="image/png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
     <style>
         html, body {
@@ -11,6 +12,7 @@
             margin: 0;
             font-family: 'Montserrat', sans-serif;
             color: #fff; /* Default text color to white for contrast */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         .top-bar {
             position: fixed; /* Fix to the top of the viewport */
@@ -52,6 +54,7 @@
             flex-direction: column;
             min-height: 100vh;
             margin-top: 70px; /* Adjust top margin to account for the top bar */
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
         .image-panel {
             position: relative; /* Position relative to allow absolute positioning of the overlay */
@@ -95,6 +98,7 @@
             flex-wrap: nowrap; /* Prevents wrapping of the panels */
             gap: 20px; /* Space between the panels */
             padding: 20px; /* Padding around the container */
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
         .robots-panel {
             width: 400px; /* Updated width */
@@ -109,6 +113,7 @@
             justify-content: center;
             align-items: center;
             text-decoration: none; /* Remove underline from links */
+            max-width: 100%; /* Ensure the panel doesn't exceed the width */
         }
         .robots-panel:hover {
             filter: grayscale(0%); /* Return to color on hover */
@@ -194,10 +199,15 @@
 
         /* New section styles */
         .team-section {
-            padding: 20px; /* Padding around the section */
-            text-align: center; /* Center align text */
-            background-color: #6e6e6e; /* Light gray background for contrast */
-            
+            background-color: #6e6e6e; /* Background color */
+            width: 100%; /* Full width of the background */
+            display: flex; /* Flex container */
+            justify-content: center; /* Center the content horizontally */
+            padding: 20px; /* Padding for spacing */
+        }
+        .team-container {
+            width: 50%; /* Set width to 50% of the screen */
+            text-align: center; /* Center align the text */
         }
         .team-heading {
             font-size: 1.5rem; /* 1.5 times the base font size */
@@ -238,10 +248,12 @@
         
         <!-- New Team Section -->
         <div class="team-section">
-            <h2 class="team-heading">Our Team</h2>
-            <p class="team-description">
-                We are a FIRST Robotics Competition team based at Southern River College in Perth Western Australia. We work to promote STEM learning and career aspirations for youth in our community.
-            </p>
+            <div class="team-container">
+                <h2 class="team-heading">Our Team</h2>
+                <p class="team-description">
+                    We are a FIRST Robotics Competition team based at Southern River College in Perth Western Australia. We work to promote STEM learning and career aspirations for youth in our community.
+                </p>
+            </div>
         </div>
         
         <div class="robots-container">
